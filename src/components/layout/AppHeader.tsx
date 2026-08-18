@@ -46,9 +46,10 @@ export function AppHeader({ onOpenMobileNav }: { onOpenMobileNav: () => void }) 
   const navigate = useNavigate();
   const { user, assistant, openAssistant } = useSession();
   const [commandOpen, setCommandOpen] = useState(false);
-  const [now, setNow] = useState(() => new Date());
+  const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
+    setNow(new Date());
     const t = setInterval(() => setNow(new Date()), 30_000);
     return () => clearInterval(t);
   }, []);
@@ -85,13 +86,15 @@ export function AppHeader({ onOpenMobileNav }: { onOpenMobileNav: () => void }) 
           <p className="hidden truncate text-xs text-muted-foreground sm:block">{meta.subtitle}</p>
         </div>
 
-        <div className="hidden items-center gap-2 rounded-lg border border-border bg-panel px-3 py-1.5 text-xs text-muted-foreground xl:flex">
-          <CalendarDays className="size-3.5" />
-          <span className="tabular-nums">{dateTimeLong(now)}</span>
-          <span className="h-3.5 w-px bg-border" />
-          <Clock className="size-3.5" />
-          <span className="tabular-nums">{timeShort(now)}</span>
-        </div>
+        {now && (
+          <div className="hidden items-center gap-2 rounded-lg border border-border bg-panel px-3 py-1.5 text-xs text-muted-foreground xl:flex">
+            <CalendarDays className="size-3.5" />
+            <span className="tabular-nums">{dateTimeLong(now)}</span>
+            <span className="h-3.5 w-px bg-border" />
+            <Clock className="size-3.5" />
+            <span className="tabular-nums">{timeShort(now)}</span>
+          </div>
+        )}
 
         <div className="hidden items-center rounded-lg border border-border bg-panel px-3 py-1.5 md:flex">
           <span className="mr-2 text-xs text-muted-foreground">Sistema</span>
