@@ -8,11 +8,15 @@ export function Panel({ className, children }: { className?: string; children: R
 export function PanelHeader({
   title,
   subtitle,
+  description,
+  icon,
   action,
   className,
 }: {
   title: ReactNode;
   subtitle?: ReactNode;
+  description?: ReactNode;
+  icon?: ReactNode;
   action?: ReactNode;
   className?: string;
 }) {
@@ -23,14 +27,24 @@ export function PanelHeader({
         className,
       )}
     >
-      <div className="min-w-0">
-        <h2 className="text-sm font-semibold tracking-tight">{title}</h2>
-        {subtitle && <p className="mt-0.5 text-xs text-muted-foreground">{subtitle}</p>}
+      <div className="flex min-w-0 items-start gap-3">
+        {icon && (
+          <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg border border-border bg-secondary text-muted-foreground">
+            {icon}
+          </span>
+        )}
+        <div className="min-w-0">
+          <h2 className="text-sm font-semibold tracking-tight">{title}</h2>
+          {(subtitle ?? description) && (
+            <p className="mt-0.5 text-xs text-muted-foreground">{subtitle ?? description}</p>
+          )}
+        </div>
       </div>
       {action && <div className="flex shrink-0 items-center gap-2">{action}</div>}
     </header>
   );
 }
+
 
 export function PanelBody({ className, children }: { className?: string; children: ReactNode }) {
   return <div className={cn("p-5", className)}>{children}</div>;
