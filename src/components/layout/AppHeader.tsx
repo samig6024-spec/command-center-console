@@ -46,9 +46,10 @@ export function AppHeader({ onOpenMobileNav }: { onOpenMobileNav: () => void }) 
   const navigate = useNavigate();
   const { user, assistant, openAssistant } = useSession();
   const [commandOpen, setCommandOpen] = useState(false);
-  const [now, setNow] = useState(() => new Date());
+  const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
+    setNow(new Date());
     const t = setInterval(() => setNow(new Date()), 30_000);
     return () => clearInterval(t);
   }, []);
