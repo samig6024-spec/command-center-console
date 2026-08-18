@@ -10,33 +10,204 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AgentesRouteImport } from './routes/agentes'
+import { Route as AprobacionesRouteImport } from './routes/aprobaciones'
+import { Route as AsistentesRouteImport } from './routes/asistentes'
+import { Route as BriefingsRouteImport } from './routes/briefings'
+import { Route as ConfiguracionRouteImport } from './routes/configuracion'
+import { Route as DepartamentosRouteImport } from './routes/departamentos'
+import { Route as DistribucionRouteImport } from './routes/distribucion'
+import { Route as ExitRoomRouteImport } from './routes/exit-room'
+import { Route as FinanzasRouteImport } from './routes/finanzas'
+import { Route as IncubadoraRouteImport } from './routes/incubadora'
+import { Route as PortafolioRouteImport } from './routes/portafolio'
+import { Route as AgentesAgentIdRouteImport } from './routes/agentes.$agentId'
+import { Route as PortafolioProductIdRouteImport } from './routes/portafolio.$productId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AgentesRoute = AgentesRouteImport.update({
+  id: '/agentes',
+  path: '/agentes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AprobacionesRoute = AprobacionesRouteImport.update({
+  id: '/aprobaciones',
+  path: '/aprobaciones',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AsistentesRoute = AsistentesRouteImport.update({
+  id: '/asistentes',
+  path: '/asistentes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BriefingsRoute = BriefingsRouteImport.update({
+  id: '/briefings',
+  path: '/briefings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfiguracionRoute = ConfiguracionRouteImport.update({
+  id: '/configuracion',
+  path: '/configuracion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DepartamentosRoute = DepartamentosRouteImport.update({
+  id: '/departamentos',
+  path: '/departamentos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DistribucionRoute = DistribucionRouteImport.update({
+  id: '/distribucion',
+  path: '/distribucion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExitRoomRoute = ExitRoomRouteImport.update({
+  id: '/exit-room',
+  path: '/exit-room',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanzasRoute = FinanzasRouteImport.update({
+  id: '/finanzas',
+  path: '/finanzas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IncubadoraRoute = IncubadoraRouteImport.update({
+  id: '/incubadora',
+  path: '/incubadora',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortafolioRoute = PortafolioRouteImport.update({
+  id: '/portafolio',
+  path: '/portafolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgentesAgentIdRoute = AgentesAgentIdRouteImport.update({
+  id: '/$agentId',
+  path: '/$agentId',
+  getParentRoute: () => AgentesRoute,
+} as any)
+const PortafolioProductIdRoute = PortafolioProductIdRouteImport.update({
+  id: '/$productId',
+  path: '/$productId',
+  getParentRoute: () => PortafolioRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/agentes': typeof AgentesRouteWithChildren
+  '/aprobaciones': typeof AprobacionesRoute
+  '/asistentes': typeof AsistentesRoute
+  '/briefings': typeof BriefingsRoute
+  '/configuracion': typeof ConfiguracionRoute
+  '/departamentos': typeof DepartamentosRoute
+  '/distribucion': typeof DistribucionRoute
+  '/exit-room': typeof ExitRoomRoute
+  '/finanzas': typeof FinanzasRoute
+  '/incubadora': typeof IncubadoraRoute
+  '/portafolio': typeof PortafolioRouteWithChildren
+  '/agentes/$agentId': typeof AgentesAgentIdRoute
+  '/portafolio/$productId': typeof PortafolioProductIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/agentes': typeof AgentesRouteWithChildren
+  '/aprobaciones': typeof AprobacionesRoute
+  '/asistentes': typeof AsistentesRoute
+  '/briefings': typeof BriefingsRoute
+  '/configuracion': typeof ConfiguracionRoute
+  '/departamentos': typeof DepartamentosRoute
+  '/distribucion': typeof DistribucionRoute
+  '/exit-room': typeof ExitRoomRoute
+  '/finanzas': typeof FinanzasRoute
+  '/incubadora': typeof IncubadoraRoute
+  '/portafolio': typeof PortafolioRouteWithChildren
+  '/agentes/$agentId': typeof AgentesAgentIdRoute
+  '/portafolio/$productId': typeof PortafolioProductIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/agentes': typeof AgentesRouteWithChildren
+  '/aprobaciones': typeof AprobacionesRoute
+  '/asistentes': typeof AsistentesRoute
+  '/briefings': typeof BriefingsRoute
+  '/configuracion': typeof ConfiguracionRoute
+  '/departamentos': typeof DepartamentosRoute
+  '/distribucion': typeof DistribucionRoute
+  '/exit-room': typeof ExitRoomRoute
+  '/finanzas': typeof FinanzasRoute
+  '/incubadora': typeof IncubadoraRoute
+  '/portafolio': typeof PortafolioRouteWithChildren
+  '/agentes/$agentId': typeof AgentesAgentIdRoute
+  '/portafolio/$productId': typeof PortafolioProductIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/agentes'
+    | '/aprobaciones'
+    | '/asistentes'
+    | '/briefings'
+    | '/configuracion'
+    | '/departamentos'
+    | '/distribucion'
+    | '/exit-room'
+    | '/finanzas'
+    | '/incubadora'
+    | '/portafolio'
+    | '/agentes/$agentId'
+    | '/portafolio/$productId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/agentes'
+    | '/aprobaciones'
+    | '/asistentes'
+    | '/briefings'
+    | '/configuracion'
+    | '/departamentos'
+    | '/distribucion'
+    | '/exit-room'
+    | '/finanzas'
+    | '/incubadora'
+    | '/portafolio'
+    | '/agentes/$agentId'
+    | '/portafolio/$productId'
+  id:
+    | '__root__'
+    | '/'
+    | '/agentes'
+    | '/aprobaciones'
+    | '/asistentes'
+    | '/briefings'
+    | '/configuracion'
+    | '/departamentos'
+    | '/distribucion'
+    | '/exit-room'
+    | '/finanzas'
+    | '/incubadora'
+    | '/portafolio'
+    | '/agentes/$agentId'
+    | '/portafolio/$productId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AgentesRoute: typeof AgentesRouteWithChildren
+  AprobacionesRoute: typeof AprobacionesRoute
+  AsistentesRoute: typeof AsistentesRoute
+  BriefingsRoute: typeof BriefingsRoute
+  ConfiguracionRoute: typeof ConfiguracionRoute
+  DepartamentosRoute: typeof DepartamentosRoute
+  DistribucionRoute: typeof DistribucionRoute
+  ExitRoomRoute: typeof ExitRoomRoute
+  FinanzasRoute: typeof FinanzasRoute
+  IncubadoraRoute: typeof IncubadoraRoute
+  PortafolioRoute: typeof PortafolioRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +219,136 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/agentes': {
+      id: '/agentes'
+      path: '/agentes'
+      fullPath: '/agentes'
+      preLoaderRoute: typeof AgentesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aprobaciones': {
+      id: '/aprobaciones'
+      path: '/aprobaciones'
+      fullPath: '/aprobaciones'
+      preLoaderRoute: typeof AprobacionesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/asistentes': {
+      id: '/asistentes'
+      path: '/asistentes'
+      fullPath: '/asistentes'
+      preLoaderRoute: typeof AsistentesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/briefings': {
+      id: '/briefings'
+      path: '/briefings'
+      fullPath: '/briefings'
+      preLoaderRoute: typeof BriefingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/configuracion': {
+      id: '/configuracion'
+      path: '/configuracion'
+      fullPath: '/configuracion'
+      preLoaderRoute: typeof ConfiguracionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/departamentos': {
+      id: '/departamentos'
+      path: '/departamentos'
+      fullPath: '/departamentos'
+      preLoaderRoute: typeof DepartamentosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/distribucion': {
+      id: '/distribucion'
+      path: '/distribucion'
+      fullPath: '/distribucion'
+      preLoaderRoute: typeof DistribucionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exit-room': {
+      id: '/exit-room'
+      path: '/exit-room'
+      fullPath: '/exit-room'
+      preLoaderRoute: typeof ExitRoomRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/finanzas': {
+      id: '/finanzas'
+      path: '/finanzas'
+      fullPath: '/finanzas'
+      preLoaderRoute: typeof FinanzasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/incubadora': {
+      id: '/incubadora'
+      path: '/incubadora'
+      fullPath: '/incubadora'
+      preLoaderRoute: typeof IncubadoraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portafolio': {
+      id: '/portafolio'
+      path: '/portafolio'
+      fullPath: '/portafolio'
+      preLoaderRoute: typeof PortafolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agentes/$agentId': {
+      id: '/agentes/$agentId'
+      path: '/$agentId'
+      fullPath: '/agentes/$agentId'
+      preLoaderRoute: typeof AgentesAgentIdRouteImport
+      parentRoute: typeof AgentesRoute
+    }
+    '/portafolio/$productId': {
+      id: '/portafolio/$productId'
+      path: '/$productId'
+      fullPath: '/portafolio/$productId'
+      preLoaderRoute: typeof PortafolioProductIdRouteImport
+      parentRoute: typeof PortafolioRoute
+    }
   }
 }
 
+interface AgentesRouteChildren {
+  AgentesAgentIdRoute: typeof AgentesAgentIdRoute
+}
+
+const AgentesRouteChildren: AgentesRouteChildren = {
+  AgentesAgentIdRoute: AgentesAgentIdRoute,
+}
+
+const AgentesRouteWithChildren =
+  AgentesRoute._addFileChildren(AgentesRouteChildren)
+
+interface PortafolioRouteChildren {
+  PortafolioProductIdRoute: typeof PortafolioProductIdRoute
+}
+
+const PortafolioRouteChildren: PortafolioRouteChildren = {
+  PortafolioProductIdRoute: PortafolioProductIdRoute,
+}
+
+const PortafolioRouteWithChildren = PortafolioRoute._addFileChildren(
+  PortafolioRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AgentesRoute: AgentesRouteWithChildren,
+  AprobacionesRoute: AprobacionesRoute,
+  AsistentesRoute: AsistentesRoute,
+  BriefingsRoute: BriefingsRoute,
+  ConfiguracionRoute: ConfiguracionRoute,
+  DepartamentosRoute: DepartamentosRoute,
+  DistribucionRoute: DistribucionRoute,
+  ExitRoomRoute: ExitRoomRoute,
+  FinanzasRoute: FinanzasRoute,
+  IncubadoraRoute: IncubadoraRoute,
+  PortafolioRoute: PortafolioRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
