@@ -10,8 +10,8 @@ export function EmptyState({
   action,
   icon,
 }: {
-  title?: string;
-  description?: string;
+  title?: string | undefined;
+  description?: string | undefined;
   action?: ReactNode;
   icon?: ReactNode;
 }) {
@@ -29,7 +29,7 @@ export function EmptyState({
   );
 }
 
-export function LoadingState({ rows = 4, className }: { rows?: number; className?: string }) {
+export function LoadingState({ rows = 4, className }: { rows?: number | undefined; className?: string | undefined }) {
   return (
     <div className={cn("space-y-3 p-5", className)} aria-busy="true" aria-live="polite">
       {Array.from({ length: rows }).map((_, i) => (
@@ -45,7 +45,7 @@ export function LoadingState({ rows = 4, className }: { rows?: number; className
   );
 }
 
-export function ErrorState({ message, onRetry }: { message?: string; onRetry?: () => void }) {
+export function ErrorState({ message, onRetry }: { message?: string | undefined; onRetry?: (() => void) | undefined }) {
   return (
     <div className="flex flex-col items-center justify-center gap-3 px-6 py-12 text-center">
       <div className="flex size-11 items-center justify-center rounded-xl border border-destructive/30 bg-destructive/10 text-destructive">
@@ -75,9 +75,9 @@ export function AsyncBoundary<T>({
 }: {
   state: { data: T | null; loading: boolean; error: string | null };
   children: (data: T) => ReactNode;
-  loadingRows?: number;
+  loadingRows?: number | undefined;
   empty?: ReactNode;
-  onRetry?: () => void;
+  onRetry?: (() => void) | undefined;
 }) {
   if (state.loading) return <LoadingState rows={loadingRows} />;
   if (state.error) return <ErrorState message={state.error} onRetry={onRetry} />;
