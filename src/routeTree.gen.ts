@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AgentesRouteImport } from './routes/agentes'
 import { Route as AprobacionesRouteImport } from './routes/aprobaciones'
 import { Route as AsistentesRouteImport } from './routes/asistentes'
 import { Route as BriefingsRouteImport } from './routes/briefings'
@@ -20,18 +19,14 @@ import { Route as DistribucionRouteImport } from './routes/distribucion'
 import { Route as ExitRoomRouteImport } from './routes/exit-room'
 import { Route as FinanzasRouteImport } from './routes/finanzas'
 import { Route as IncubadoraRouteImport } from './routes/incubadora'
-import { Route as PortafolioRouteImport } from './routes/portafolio'
+import { Route as AgentesIndexRouteImport } from './routes/agentes.index'
 import { Route as AgentesAgentIdRouteImport } from './routes/agentes.$agentId'
+import { Route as PortafolioIndexRouteImport } from './routes/portafolio.index'
 import { Route as PortafolioProductIdRouteImport } from './routes/portafolio.$productId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AgentesRoute = AgentesRouteImport.update({
-  id: '/agentes',
-  path: '/agentes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AprobacionesRoute = AprobacionesRouteImport.update({
@@ -79,25 +74,29 @@ const IncubadoraRoute = IncubadoraRouteImport.update({
   path: '/incubadora',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PortafolioRoute = PortafolioRouteImport.update({
-  id: '/portafolio',
-  path: '/portafolio',
+const AgentesIndexRoute = AgentesIndexRouteImport.update({
+  id: '/agentes/',
+  path: '/agentes/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AgentesAgentIdRoute = AgentesAgentIdRouteImport.update({
-  id: '/$agentId',
-  path: '/$agentId',
-  getParentRoute: () => AgentesRoute,
+  id: '/agentes/$agentId',
+  path: '/agentes/$agentId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortafolioIndexRoute = PortafolioIndexRouteImport.update({
+  id: '/portafolio/',
+  path: '/portafolio/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const PortafolioProductIdRoute = PortafolioProductIdRouteImport.update({
-  id: '/$productId',
-  path: '/$productId',
-  getParentRoute: () => PortafolioRoute,
+  id: '/portafolio/$productId',
+  path: '/portafolio/$productId',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/agentes': typeof AgentesRouteWithChildren
   '/aprobaciones': typeof AprobacionesRoute
   '/asistentes': typeof AsistentesRoute
   '/briefings': typeof BriefingsRoute
@@ -107,13 +106,13 @@ export interface FileRoutesByFullPath {
   '/exit-room': typeof ExitRoomRoute
   '/finanzas': typeof FinanzasRoute
   '/incubadora': typeof IncubadoraRoute
-  '/portafolio': typeof PortafolioRouteWithChildren
   '/agentes/$agentId': typeof AgentesAgentIdRoute
   '/portafolio/$productId': typeof PortafolioProductIdRoute
+  '/agentes/': typeof AgentesIndexRoute
+  '/portafolio/': typeof PortafolioIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/agentes': typeof AgentesRouteWithChildren
   '/aprobaciones': typeof AprobacionesRoute
   '/asistentes': typeof AsistentesRoute
   '/briefings': typeof BriefingsRoute
@@ -123,14 +122,14 @@ export interface FileRoutesByTo {
   '/exit-room': typeof ExitRoomRoute
   '/finanzas': typeof FinanzasRoute
   '/incubadora': typeof IncubadoraRoute
-  '/portafolio': typeof PortafolioRouteWithChildren
   '/agentes/$agentId': typeof AgentesAgentIdRoute
   '/portafolio/$productId': typeof PortafolioProductIdRoute
+  '/agentes': typeof AgentesIndexRoute
+  '/portafolio': typeof PortafolioIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/agentes': typeof AgentesRouteWithChildren
   '/aprobaciones': typeof AprobacionesRoute
   '/asistentes': typeof AsistentesRoute
   '/briefings': typeof BriefingsRoute
@@ -140,15 +139,15 @@ export interface FileRoutesById {
   '/exit-room': typeof ExitRoomRoute
   '/finanzas': typeof FinanzasRoute
   '/incubadora': typeof IncubadoraRoute
-  '/portafolio': typeof PortafolioRouteWithChildren
   '/agentes/$agentId': typeof AgentesAgentIdRoute
   '/portafolio/$productId': typeof PortafolioProductIdRoute
+  '/agentes/': typeof AgentesIndexRoute
+  '/portafolio/': typeof PortafolioIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/agentes'
     | '/aprobaciones'
     | '/asistentes'
     | '/briefings'
@@ -158,13 +157,13 @@ export interface FileRouteTypes {
     | '/exit-room'
     | '/finanzas'
     | '/incubadora'
-    | '/portafolio'
     | '/agentes/$agentId'
     | '/portafolio/$productId'
+    | '/agentes/'
+    | '/portafolio/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/agentes'
     | '/aprobaciones'
     | '/asistentes'
     | '/briefings'
@@ -174,13 +173,13 @@ export interface FileRouteTypes {
     | '/exit-room'
     | '/finanzas'
     | '/incubadora'
-    | '/portafolio'
     | '/agentes/$agentId'
     | '/portafolio/$productId'
+    | '/agentes'
+    | '/portafolio'
   id:
     | '__root__'
     | '/'
-    | '/agentes'
     | '/aprobaciones'
     | '/asistentes'
     | '/briefings'
@@ -190,14 +189,14 @@ export interface FileRouteTypes {
     | '/exit-room'
     | '/finanzas'
     | '/incubadora'
-    | '/portafolio'
     | '/agentes/$agentId'
     | '/portafolio/$productId'
+    | '/agentes/'
+    | '/portafolio/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AgentesRoute: typeof AgentesRouteWithChildren
   AprobacionesRoute: typeof AprobacionesRoute
   AsistentesRoute: typeof AsistentesRoute
   BriefingsRoute: typeof BriefingsRoute
@@ -207,7 +206,10 @@ export interface RootRouteChildren {
   ExitRoomRoute: typeof ExitRoomRoute
   FinanzasRoute: typeof FinanzasRoute
   IncubadoraRoute: typeof IncubadoraRoute
-  PortafolioRoute: typeof PortafolioRouteWithChildren
+  AgentesAgentIdRoute: typeof AgentesAgentIdRoute
+  PortafolioProductIdRoute: typeof PortafolioProductIdRoute
+  AgentesIndexRoute: typeof AgentesIndexRoute
+  PortafolioIndexRoute: typeof PortafolioIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -217,13 +219,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/agentes': {
-      id: '/agentes'
-      path: '/agentes'
-      fullPath: '/agentes'
-      preLoaderRoute: typeof AgentesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/aprobaciones': {
@@ -289,56 +284,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IncubadoraRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/portafolio': {
-      id: '/portafolio'
-      path: '/portafolio'
-      fullPath: '/portafolio'
-      preLoaderRoute: typeof PortafolioRouteImport
+    '/agentes/': {
+      id: '/agentes/'
+      path: '/agentes'
+      fullPath: '/agentes/'
+      preLoaderRoute: typeof AgentesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/agentes/$agentId': {
       id: '/agentes/$agentId'
-      path: '/$agentId'
+      path: '/agentes/$agentId'
       fullPath: '/agentes/$agentId'
       preLoaderRoute: typeof AgentesAgentIdRouteImport
-      parentRoute: typeof AgentesRoute
+      parentRoute: typeof rootRouteImport
+    }
+    '/portafolio/': {
+      id: '/portafolio/'
+      path: '/portafolio'
+      fullPath: '/portafolio/'
+      preLoaderRoute: typeof PortafolioIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/portafolio/$productId': {
       id: '/portafolio/$productId'
-      path: '/$productId'
+      path: '/portafolio/$productId'
       fullPath: '/portafolio/$productId'
       preLoaderRoute: typeof PortafolioProductIdRouteImport
-      parentRoute: typeof PortafolioRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface AgentesRouteChildren {
-  AgentesAgentIdRoute: typeof AgentesAgentIdRoute
-}
-
-const AgentesRouteChildren: AgentesRouteChildren = {
-  AgentesAgentIdRoute: AgentesAgentIdRoute,
-}
-
-const AgentesRouteWithChildren =
-  AgentesRoute._addFileChildren(AgentesRouteChildren)
-
-interface PortafolioRouteChildren {
-  PortafolioProductIdRoute: typeof PortafolioProductIdRoute
-}
-
-const PortafolioRouteChildren: PortafolioRouteChildren = {
-  PortafolioProductIdRoute: PortafolioProductIdRoute,
-}
-
-const PortafolioRouteWithChildren = PortafolioRoute._addFileChildren(
-  PortafolioRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AgentesRoute: AgentesRouteWithChildren,
   AprobacionesRoute: AprobacionesRoute,
   AsistentesRoute: AsistentesRoute,
   BriefingsRoute: BriefingsRoute,
@@ -348,7 +326,10 @@ const rootRouteChildren: RootRouteChildren = {
   ExitRoomRoute: ExitRoomRoute,
   FinanzasRoute: FinanzasRoute,
   IncubadoraRoute: IncubadoraRoute,
-  PortafolioRoute: PortafolioRouteWithChildren,
+  AgentesAgentIdRoute: AgentesAgentIdRoute,
+  PortafolioProductIdRoute: PortafolioProductIdRoute,
+  AgentesIndexRoute: AgentesIndexRoute,
+  PortafolioIndexRoute: PortafolioIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
